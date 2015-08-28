@@ -628,9 +628,9 @@ void DataManager::SetDefaultValues()
 	mConstValues.insert(make_pair("false", "0"));
 
 	mConstValues.insert(make_pair(TW_VERSION_VAR, TW_VERSION_STR));
-	mValues.insert(make_pair("tw_button_vibrate", make_pair("80", 1)));
-	mValues.insert(make_pair("tw_keyboard_vibrate", make_pair("40", 1)));
-	mValues.insert(make_pair("tw_action_vibrate", make_pair("160", 1)));
+	mValues.insert(make_pair("tw_button_vibrate", make_pair("0", 1)));
+	mValues.insert(make_pair("tw_keyboard_vibrate", make_pair("0", 1)));
+	mValues.insert(make_pair("tw_action_vibrate", make_pair("0", 1)));
 
 	TWPartition *store = PartitionManager.Get_Default_Storage_Partition();
 	if(store)
@@ -850,8 +850,8 @@ void DataManager::SetDefaultValues()
 		ostringstream maxVal;
 		maxVal << TW_MAX_BRIGHTNESS;
 		mConstValues.insert(make_pair("tw_brightness_max", maxVal.str()));
-		mValues.insert(make_pair("tw_brightness", make_pair(maxVal.str(), 1)));
-		mValues.insert(make_pair("tw_brightness_pct", make_pair("100", 1)));
+		mValues.insert(make_pair("tw_brightness", make_pair("30", 1)));
+		mValues.insert(make_pair("tw_brightness_pct", make_pair("30", 1)));
 #ifdef TW_SECONDARY_BRIGHTNESS_PATH
 		string secondfindbright = EXPAND(TW_SECONDARY_BRIGHTNESS_PATH);
 		if (secondfindbright != "" && TWFunc::Path_Exists(secondfindbright)) {
@@ -861,8 +861,7 @@ void DataManager::SetDefaultValues()
 			LOGINFO("Specified secondary brightness file '%s' not found.\n", secondfindbright.c_str());
 		}
 #endif
-		string max_bright = maxVal.str();
-		TWFunc::Set_Brightness(max_bright);
+		TWFunc::Set_Brightness("76");
 	}
 #endif
 	mValues.insert(make_pair(TW_MILITARY_TIME, make_pair("0", 1)));
