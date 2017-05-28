@@ -543,19 +543,6 @@ void TWFunc::Update_Log_File(void) {
 		LOGINFO("Failed to mount /cache or find /data/cache for TWFunc::Update_Log_File\n");
 	}
 
-	// Reset bootloader message
-	TWPartition* Part = PartitionManager.Find_Partition_By_Path("/misc");
-	if (Part != NULL) {
-		string err;
-		if (!clear_bootloader_message(&err)) {
-			if (err == "no misc device set") {
-				LOGINFO("%s\n", err.c_str());
-			} else {
-				LOGERR("%s\n", err.c_str());
-			}
-		}
-	}
-
 	if (PartitionManager.Mount_By_Path("/cache", false)) {
 		if (unlink("/cache/recovery/command") && errno != ENOENT) {
 			LOGINFO("Can't unlink %s\n", "/cache/recovery/command");

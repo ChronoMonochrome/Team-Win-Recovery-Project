@@ -25,7 +25,6 @@
 #include "log.h"
 
 #include "cutils/properties.h"
-#include "bootloader_message/bootloader_message.h"
 
 #ifdef ANDROID_RB_RESTART
 #include "cutils/android_reboot.h"
@@ -186,16 +185,6 @@ int main(int argc, char **argv) {
 	bool Shutdown = false;
 	string Send_Intent = "";
 	{
-		TWPartition* misc = PartitionManager.Find_Partition_By_Path("/misc");
-		if (misc != NULL) {
-			if (misc->Current_File_System == "emmc") {
-				set_misc_device(misc->Actual_Block_Device);
-			} else {
-				LOGERR("Only emmc /misc is supported\n");
-			}
-		}
-		get_args(&argc, &argv);
-
 		int index, index2, len;
 		char* argptr;
 		char* ptr;

@@ -121,7 +121,7 @@ LOCAL_STATIC_LIBRARIES :=
 LOCAL_SHARED_LIBRARIES :=
 
 LOCAL_STATIC_LIBRARIES += libguitwrp
-LOCAL_SHARED_LIBRARIES += libaosprecovery libz libc libcutils libstdc++ libtar libblkid libminuitwrp libminadbd libmtdutils libminzip libtwadbbu libbootloader_message
+LOCAL_SHARED_LIBRARIES += libaosprecovery libz libc libcutils libstdc++ libtar libblkid libminuitwrp libminadbd libmtdutils libminzip libtwadbbu
 LOCAL_SHARED_LIBRARIES += libcrecovery
 
 ifeq ($(shell test $(PLATFORM_SDK_VERSION) -lt 23; echo $$?),0)
@@ -372,7 +372,6 @@ LOCAL_ADDITIONAL_DEPENDENCIES += \
     mkfs.fat \
     permissive.sh \
     simg2img_twrp \
-    libbootloader_message \
     init.recovery.service.rc
 
 ifneq ($(TARGET_ARCH), arm64)

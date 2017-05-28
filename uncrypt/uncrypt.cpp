@@ -109,7 +109,6 @@
 #include <android-base/logging.h>
 #include <android-base/stringprintf.h>
 #include <android-base/strings.h>
-#include <bootloader_message/bootloader_message.h>
 #include <cutils/android_reboot.h>
 #include <cutils/properties.h>
 #include <cutils/sockets.h>
@@ -507,11 +506,6 @@ static bool uncrypt_wrapper(const char* input_path, const char* map_file, const 
 
 static bool clear_bcb(const int socket) {
     std::string err;
-    if (!clear_bootloader_message(&err)) {
-        ALOGE("failed to clear bootloader message: %s", err.c_str());
-        write_status_to_socket(-1, socket);
-        return false;
-    }
     write_status_to_socket(100, socket);
     return true;
 }
@@ -546,18 +540,6 @@ static bool setup_bcb(const int socket) {
         }
     }
 
-    // c8. setup the bcb command
-    std::string err;
-    if (!write_bootloader_message(options, &err)) {
-        ALOGE("failed to set bootloader message: %s", err.c_str());
-        write_status_to_socket(-1, socket);
-        return false;
-    }
-    if (!wipe_package.empty() && !write_wipe_package(wipe_package, &err)) {
-        ALOGE("failed to set wipe package: %s", err.c_str());
-        write_status_to_socket(-1, socket);
-        return false;
-    }
     // c10. send "100" status
     write_status_to_socket(100, socket);
     return true;
