@@ -627,7 +627,6 @@ include $(BUILD_SHARED_LIBRARY)
 include $(CLEAR_VARS)
 LOCAL_CLANG := true
 LOCAL_MODULE := libverifier
-LOCAL_MODULE_TAGS := tests
 LOCAL_SRC_FILES := \
     asn1_decoder.cpp \
     verifier.cpp \

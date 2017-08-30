@@ -196,4 +196,4 @@ LOCAL_STATIC_LIBRARIES += libpixelflinger_twrp libbase
 LOCAL_MODULE_TAGS := eng
 LOCAL_MODULE := libminuitwrp
 
-include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_STATIC_LIBRARY)
